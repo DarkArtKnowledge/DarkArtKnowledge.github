@@ -12,3 +12,15 @@
 <a href="#">Assignment 05</a><br />
 <a href="#">Assignment 06</a><br />
 <a href="#">Assignment 07</a><br />
+let h = "horse🐴shoe👟";
+
+function stripNonAscii(str) {
+  returnString = "";
+  for (let i = 0; i < str.length; i++ ) {
+    returnString += (str.codePointAt(i) > 255) ? str[i]  : "" ; 
+  }
+  return returnString;
+}
+
+console.log(stripNonAscii(h));
+console.log(h.length);
