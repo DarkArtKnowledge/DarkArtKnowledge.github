@@ -15,7 +15,7 @@
   text-align: right;
 }
 body {
-color: skyblue;
+background-color: skyblue;
 }
 input[type="text"].pinkey:focus {
   back
