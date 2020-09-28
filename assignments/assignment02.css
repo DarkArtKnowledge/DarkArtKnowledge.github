@@ -14,24 +14,24 @@
 .rightey td {
   text-align: right;
 }
+  /* end of pre existing CSS */
+ /* #2  */ 
 body {
 background-color: skyblue;
 }
-input[type="text"].pinkey:focus {
-  background-color: pink;
-}
-
+ /* #3  */ 
 #igottabeme {
   font-family: arial, helvetica, sans-serif;
 }
-
+ /*  #4  */
 .classy {
     margin-left: 10px;
 }
-
+ /*  #5  */
 div {
   margin-bottom: 50px;
 }
+ /*  #6  */
 span {
   width: 100px;
   height: 50px;
@@ -44,7 +44,7 @@ span {
   border-color: blue;
   background-color: yellow;
 }
-
+ /*  #7  */
 .a {
   height: 0px;
 word-wrap: normal;
@@ -57,16 +57,19 @@ span.c{
   display:inline-block;
   height: 50px;
 }
+ /*  #8  */
 img[alt="cat icon"] {
   position: fixed;
   bottom: 0;
 right: 0;
 }
+ /*  #9  */
 img[alt="dog icon"] {
   position: relative;
   right: 50px;
   bottom: 150px;
 }
+ /*  #10  */
 #positionMe {
   background-color: orange;
 }
@@ -76,10 +79,14 @@ img[alt="bird icon"] {
   left: 250px;
   z-index: 1;
 }
-
+ /*  #11  */
 nav {
   position:sticky;
   top: 0;
   background-color: green;
   opacity: 90%;
+}
+ /*  #13  */
+input[type="text"].pinkey:focus {
+  background-color: pink;
 }
