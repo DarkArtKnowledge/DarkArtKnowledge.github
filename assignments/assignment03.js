@@ -92,7 +92,6 @@ function add1 (elem) {
 }
 
 /* your mission: 
-
 1. Make all the + buttons add 1 to the score of the hole. Do not allow the score to exceed double the par. 
 2. Make all the - buttons subtract 1 from the score of the hole. Do not allow the score to be negative!
 3. Make the "Over" column display the difference, score - par, of the hole.
