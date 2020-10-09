@@ -36,7 +36,6 @@ elem[17]
   = document.getElementById("17");
 elem[18]
   = document.getElementById("18");
-
 // display the number of children (all td elements)
 // console.log(elem.children.length);
 // display the content of the + button, which is the first child of the fifth element
@@ -45,40 +44,112 @@ elem[18]
 // assign a function to the + button
 elem[1].children[4].children[0].onclick 
   = function(){add1(elem[1]);};
+elem[1].children[4].children[1].onclick 
+  = function(){sub1(elem[1]);};
+elem[1].children[4].onclick =function(){over(elem[1]);};
+
 elem[2].children[4].children[0].onclick 
   = function(){add1(elem[2]);};
+elem[2].children[4].children[1].onclick 
+  = function(){sub1(elem[2]);};
+elem[2].children[4].onclick =function(){over(elem[2]);};
+
 elem[3].children[4].children[0].onclick 
   = function(){add1(elem[3]);};
+elem[3].children[4].children[1].onclick 
+  = function(){sub1(elem[3]);};
+elem[3].children[4].onclick =function(){over(elem[3]);};
+
 elem[4].children[4].children[0].onclick 
   = function(){add1(elem[4]);};
+elem[4].children[4].children[1].onclick 
+  = function(){sub1(elem[4]);};
+elem[4].children[4].onclick =function(){over(elem[4]);};
+
 elem[5].children[4].children[0].onclick 
   = function(){add1(elem[5]);};
+elem[5].children[4].children[1].onclick 
+  = function(){sub1(elem[5]);};
+elem[5].children[4].onclick =function(){over(elem[5]);};
+
 elem[6].children[4].children[0].onclick 
   = function(){add1(elem[6]);};
+elem[6].children[4].children[1].onclick 
+  = function(){sub1(elem[6]);};
+elem[6].children[4].onclick =function(){over(elem[6]);};
+
 elem[7].children[4].children[0].onclick 
   = function(){add1(elem[7]);};
+elem[7].children[4].children[1].onclick 
+  = function(){sub1(elem[7]);};
+elem[7].children[4].onclick =function(){over(elem[7]);};
+
 elem[8].children[4].children[0].onclick 
   = function(){add1(elem[8]);};
+elem[8].children[4].children[1].onclick 
+  = function(){sub1(elem[8]);};
+elem[8].children[4].onclick =function(){over(elem[8]);};
+
 elem[9].children[4].children[0].onclick 
   = function(){add1(elem[9]);};
+elem[9].children[4].children[1].onclick 
+  = function(){sub1(elem[9]);};
+elem[9].children[4].onclick =function(){over(elem[9]);};
+
 elem[10].children[4].children[0].onclick 
   = function(){add1(elem[10]);};
+elem[10].children[4].children[1].onclick 
+  = function(){sub1(elem[10]);};
+elem[10].children[4].onclick =function(){over(elem[10]);};
+
 elem[11].children[4].children[0].onclick 
   = function(){add1(elem[11]);};
+elem[11].children[4].children[1].onclick 
+  = function(){sub1(elem[11]);};
+elem[11].children[4].onclick =function(){over(elem[11]);};
+
 elem[12].children[4].children[0].onclick 
   = function(){add1(elem[12]);};
+elem[12].children[4].children[1].onclick 
+  = function(){sub1(elem[12]);};
+elem[12].children[4].onclick =function(){over(elem[12]);};
+
 elem[13].children[4].children[0].onclick 
   = function(){add1(elem[13]);};
+elem[13].children[4].children[1].onclick 
+  = function(){sub1(elem[13]);};
+elem[13].children[4].onclick =function(){over(elem[13]);};
+
 elem[14].children[4].children[0].onclick 
   = function(){add1(elem[14]);};
+elem[14].children[4].children[1].onclick 
+  = function(){sub1(elem[14]);};
+elem[14].children[4].onclick =function(){over(elem[14]);};
+
 elem[15].children[4].children[0].onclick 
   = function(){add1(elem[15]);};
+elem[15].children[4].children[1].onclick 
+  = function(){sub1(elem[15]);};
+elem[15].children[4].onclick =function(){over(elem[15]);};
+
 elem[16].children[4].children[0].onclick 
   = function(){add1(elem[16]);};
+elem[16].children[4].children[1].onclick 
+  = function(){sub1(elem[16]);};
+elem[16].children[4].onclick =function(){over(elem[16]);};
+
 elem[17].children[4].children[0].onclick 
   = function(){add1(elem[17]);};
+elem[17].children[4].children[1].onclick 
+  = function(){sub1(elem[17]);};
+elem[17].children[4].onclick =function(){over(elem[17]);};
+
+
 elem[18].children[4].children[0].onclick 
   = function(){add1(elem[18]);};
+elem[18].children[4].children[1].onclick 
+  = function(){sub1(elem[18]);};
+elem[18].children[4].onclick =function(){over(elem[18]);};
 
 // create an "add1" function
 function add1 (elem) {
@@ -90,7 +161,22 @@ function add1 (elem) {
     elem.children[2].innerHTML = currentScore + 1;
   }
 }
-
+  //create a "sub1" function
+  
+    function sub1 (elem) {
+  if(elem.children[2].innerHTML == "-") 
+    elem.children[2].innerHTML = "-";
+  else {
+    let currentScore = elem.children[2].innerHTML;
+    currentScore = Number.parseInt(currentScore);
+    elem.children[2].innerHTML = currentScore - 1;
+  }
+    }
+          function over (elem) {
+             let currentScore = elem.children[2].innerHTML;
+    currentScore = Number.parseInt(currentScore);
+    elem.children[3].innerHTML = currentScore - 4;
+  }    
 /* your mission: 
 1. Make all the + buttons add 1 to the score of the hole. Do not allow the score to exceed double the par. 
 2. Make all the - buttons subtract 1 from the score of the hole. Do not allow the score to be negative!
