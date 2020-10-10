@@ -48,7 +48,6 @@ elem[1].children[4].children[1].onclick
   = function(){sub1(elem[1]);};
 elem[1].children[4].onclick =function(){over(elem[1]);};
 elem[1].children[4].children[2].onclick =function(){clear(elem[1]);};
-elem[1].children[4].onclick =function(){total(elem[totals]);};
 
 elem[2].children[4].children[0].onclick 
   = function(){add1(elem[2]);};
@@ -205,14 +204,6 @@ function overtotal (elem) {
     elem.children[2].innerHTML = currentScore + 1;
   }
 }
-      function total (elem) {
-                  let total = 0;
-        for (i = 0; i < elem.length; i++) {
-  total += elem[i].children[2] + total;
-                total = Number.parseInt(total);
-          elem[totals].children[2].innerhtml = total;
-}
-  }
 function clear (elem) {
     elem.children[2].innerHTML = "-";
   }
