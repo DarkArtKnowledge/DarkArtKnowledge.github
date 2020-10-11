@@ -1,4 +1,7 @@
 let elem = [];
+let totalNum = 0;
+let overNum = 0;
+let overStart = -4;
 // assign the entire table row for hole 1 to a variable, elem
 elem[1]
   = document.getElementById("1");
@@ -36,6 +39,8 @@ elem[17]
   = document.getElementById("17");
 elem[18]
   = document.getElementById("18");
+elem[19]
+  = document.getElementById("19");
 // display the number of children (all td elements)
 // console.log(elem.children.length);
 // display the content of the + button, which is the first child of the fifth element
@@ -168,26 +173,39 @@ elem[18].children[4].children[1].onclick
 elem[18].children[4].onclick =function(){over(elem[18]);};
 elem[18].children[4].children[2].onclick =function(){clear(elem[18]);};
 
+elem[19].children[2].innerHTML = totalNum;
+elem[19].children[3].innerHTML = overNum;
+
+function totals1 (elem) {
+  document.getElementById("scoreTotal").innerHTML = totalNum;
+document.getElementById("overTotal").innerHTML = overNum;
+}
 // create an "add1" function
 function add1 (elem) {
   if(elem.children[2].innerHTML == "-") 
-    elem.children[2].innerHTML = "1";
+    elem.children[2].innerHTML = "1",  overNum = overNum + overStart;
   else {
     let currentScore = elem.children[2].innerHTML;
     currentScore = Number.parseInt(currentScore);
     elem.children[2].innerHTML = currentScore + 1;
   }
+     totalNum = totalNum + 1;
+   overNum = overNum + 1;
+  totals1();
 }
   //create a "sub1" function
   
     function sub1 (elem) {
   if(elem.children[2].innerHTML == "-") 
-    elem.children[2].innerHTML = "-";
+    elem.children[2].innerHTML = "-" ,  overNum = overNum + overStart;
   else {
     let currentScore = elem.children[2].innerHTML;
     currentScore = Number.parseInt(currentScore);
     elem.children[2].innerHTML = currentScore - 1;
   }
+        totalNum = totalNum - 1;
+    overNum = overNum - 1;
+  totals1();
     }
           function over (elem) {
              let currentScore = elem.children[2].innerHTML;
@@ -195,5 +213,12 @@ function add1 (elem) {
     elem.children[3].innerHTML = currentScore - 4;
   }  
 function clear (elem) {
+  let currentScore = elem.children[2].innerHTML;
+   currentScore = Number.parseInt(currentScore);
+    let currentOver = elem.children[3].innerHTML;
+   currentOver = Number.parseInt(currentOver);
+  totalNum = totalNum - currentScore;
+  overNum = overNum - currentOver;
     elem.children[2].innerHTML = "-";
-  }
+  totals1();
+}
