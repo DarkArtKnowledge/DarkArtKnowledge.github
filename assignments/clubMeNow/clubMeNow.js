@@ -80,6 +80,7 @@ function appendTableRows() {
 
 // navigate to "club ENTRY" screen (enter a new club, not a distance)
 function displayClubEntry() {
+	 alert("Warning: you are only allowed to carry 14 clubs in your golf bag in match play competition.");
 	window.location.href = "clubEntry.html"; 
 }
 
