@@ -48,12 +48,12 @@
 	// retrieve the "clubs" array
 	let clubs = JSON.parse(localStorage.getItem('clubs'));
 	// display the full clubName of the user-chosen club
-	let newClubName = clubName.innerHTML;
+	let newClubName = document.getElementById("clubName").innerHTML;
 	let newClubDistances;
         // your code here
 		i = clubs.length;
 		let abbrev = newClubName.slice(1,3);
-		clubs[i] = [i + "99", abbrev , newClubName , 50 , 0, 0, 0, 15, 150, 150];
+		clubs[i] = [i + "99", abbrev , newClubName , 0 , 0, 0, 0, 15, 150, 150];
 	let str = JSON.stringify(clubs);
 	localStorage.setItem("clubs", str);
 	// navigate to club distance LIST screen
