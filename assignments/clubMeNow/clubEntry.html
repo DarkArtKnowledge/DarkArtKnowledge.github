@@ -47,15 +47,13 @@
 	// retrieve the "clubs" array
 	let clubs = JSON.parse(localStorage.getItem('clubs'));
 	// display the full clubName of the user-chosen club
-	let newClubName ;
+	let newClubName = clubName.innerHTML;
 	let newClubDistances;
-	
 	function addClub() {
         // your code here
-		i = club.length;
-		driver = clubName.innerHTML
-		abbrev = driver.charAt(0) + driver.charAt(1)
-		club[i] = [i + "99", abbrev , driver ,   0, 0, 0, 0, 15, 150, 150]
+		i = clubRow.length;
+		let abbrev = newClubName.charAt(0) + newClubName.charAt(1)
+		club[i] = [i + "99", abbrev , newClubName ,   0, 0, 0, 0, 15, 150, 150]
 	}
 	
 	// navigate to club distance LIST screen
