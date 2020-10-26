@@ -29,6 +29,8 @@
 			    onclick='updateStats();'>&nbsp;&nbsp;&#x2714;&nbsp;&nbsp;</button> 
 			<button class='btn btn-danger cmn_fullHeight'  
 			    onclick='cancelClub();'>&nbsp;&nbsp;X&nbsp;&nbsp;</button><br><br>
+			let lastClubVal = document.getElementById('clubVal').value;
+			localStorage.setItem("lastClubVal", lastClubVal);
 		</div>
 	</form>
 
