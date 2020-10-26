@@ -42,21 +42,22 @@
 <!-- ClubMeNow custom JS -->
 <script src='clubMeNow.js'></script>
 <script>
-	// retrieve the row of the user-chosen club
+	function addClub() {
+			// retrieve the row of the user-chosen club
 	let clubRow = parseInt(localStorage.getItem('club'));
 	// retrieve the "clubs" array
 	let clubs = JSON.parse(localStorage.getItem('clubs'));
 	// display the full clubName of the user-chosen club
 	let newClubName = clubName.innerHTML;
 	let newClubDistances;
-	function addClub() {
         // your code here
 		i = clubs.length;
-		let abbrev = newClubName.charAt(0) + newClubName.charAt(1);
+		let abbrev = newClubName.slice(1,3);
 		clubs[i] = [i + "99", abbrev , newClubName ,   0, 0, 0, 0, 15, 150, 150];
-	}
-	
+		 clubs = JSON.stringify(localStorage.setItem('clubs'));
 	// navigate to club distance LIST screen
+	window.location.href = "clubDistanceList.html";
+	}
     function cancelClub() {
 	    window.location.href = "clubDistanceList.html"; 
     }
