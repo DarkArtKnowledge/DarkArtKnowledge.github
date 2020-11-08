@@ -91,6 +91,7 @@ function loadContent() {
             "Population": populations[c.Slug],
             "TotalConfirmedPer100000": 100000 * c.TotalConfirmed / populations[c.Slug],
           });
+            _.orderBy(populations, ['TotalConfirmedPer100000'],['desc'])
         }
       }
 
