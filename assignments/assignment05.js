@@ -86,6 +86,10 @@ function loadContent() {
             "Slug": c.Slug, 
             "NewConfirmed": c.NewConfirmed, 
             "NewDeaths": c.NewDeaths
+	    "TotalConfirmed": c.TotalConfirmed,
+            "TotalDeaths": c.TotalDeaths,
+            "Population": populations[c.Slug],
+            "TotalConfirmedPer100000": 100000 * c.TotalConfirmed / populations[c.Slug],
           });
         }
       }
