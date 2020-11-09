@@ -82,6 +82,10 @@ let chartData = {
 function loadContent() {
   xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
+	   if(this.status == 404){
+      newConfirmedOver1000 = storedPop;
+    }
+    else
     if (this.readyState == 4 
         && this.status == 200) {
       
@@ -101,6 +105,8 @@ function loadContent() {
             "TotalConfirmedPer100000": 100000 * c.TotalConfirmed / populations[c.Slug],
           });  
         }
+	 localStorage.setItem("newConfirmedOver1000", JSON.stringify(newConfirmedOver1000));      //set Array in local storage
+        storedPop = JSON.parse(localStorage.getItem("newConfirmedOver1000")); //get Array	    
 newConfirmedOver1000 = _.orderBy(newConfirmedOver1000,['TotalConfirmedPer100000'], ['desc']);
       }
       chartData.data.datasets[0].backgroundColor 
