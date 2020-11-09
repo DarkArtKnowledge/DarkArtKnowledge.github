@@ -15,9 +15,9 @@ let xhttp;
 
 // modified from : https://www.sitepoint.com/introduction-chart-js-2-0-six-examples/
 // "ctx" is the canvas HTML element where the chart is rendered in the browser
-let ctx = 
+const ctx = 
   document.getElementById('myChart').getContext('2d');
-let ctxReal = 
+const ctxReal = 
   document.getElementById('myRealChart').getContext('2d');
 // "chartData" includes the graph AND the formatting, including title, legend, axes, etc.
 let chartData = {
@@ -32,7 +32,7 @@ let chartData = {
       label: 'oranges',
       data: [2, 29, 5, 5, 2, 3, 10],
       backgroundColor: "rgba(255,140,0,0.4)"
-    },{
+    }, {
       label: 'banaenae',
       data: [10, 15, 20, 30, 40, 50, 60],
       backgroundColor: "rgba(0,0,250,0.4)"
@@ -49,7 +49,7 @@ let chartData = {
           // logarithmic scale ignores maxTicksLimit
           maxTicksLimit: 11,
           callback: function(label, index, labels) {
-return (label/1000 == 10000
+            return (label/1000 == 10000
                     || label/1000 == 1000 
                     || label/1000 == 100 
                     || label/1000 == 10 
@@ -90,21 +90,20 @@ function loadContent() {
       newConfirmedOver1000 = [];
       
 	    for (let c of covidJsObj.Countries) {
-        if (c.NewConfirmed > 10000) {
+        if (c.TotalDeaths > 50000) {
           newConfirmedOver1000.push({ 
             "Slug": c.Slug, 
             "NewConfirmed": c.NewConfirmed, 
-            "NewDeaths": c.NewDeaths
-	    "TotalConfirmed": c.TotalConfirmed,
+            "NewDeaths": c.NewDeaths,
+            "TotalConfirmed": c.TotalConfirmed,
             "TotalDeaths": c.TotalDeaths,
             "Population": populations[c.Slug],
             "TotalConfirmedPer100000": 100000 * c.TotalConfirmed / populations[c.Slug],
-          });
+          });  
         }
-		    newConfirmedOver1000 = _.orderBy(newConfirmedOver1000,['TotalConfirmedPer100000'], ['desc']);
+newConfirmedOver1000 = _.orderBy(newConfirmedOver1000,['TotalConfirmedPer100000'], ['desc']);
       }
-
- chartData.data.datasets[0].backgroundColor 
+      chartData.data.datasets[0].backgroundColor 
         = "rgba(100,100,100,0.4)"; // gray
       chartData.data.datasets[1].backgroundColor 
         = "rgba(255,0,0,0.4)"; // red   
@@ -130,17 +129,14 @@ function loadContent() {
       chartData.options.title.text 
         = "Covid 19 Hotspots (" + 
         dayjs().format("YYYY-MM-DD") + ")" ;
-      myRealChart = new Chart(ctxReal, chartData);  
+      myRealChart = new Chart(ctxReal, chartData); 
 
     } // end if
-    
   }; // end xhttp.onreadystatechange = function()
   
   xhttp.open("GET", URL, true);
   xhttp.send();
-  
 } // end function loadContent() 
-
 // data from: https://en.wikipedia.org/wiki/List_of_countries_and_dependencies_by_population
 let populations = {
   'china' : 1405137440,
