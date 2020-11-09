@@ -17,6 +17,8 @@ let xhttp;
 // "ctx" is the canvas HTML element where the chart is rendered in the browser
 let ctx = 
   document.getElementById('myChart').getContext('2d');
+let ctxReal = 
+  document.getElementById('myRealChart').getContext('2d');
 // "chartData" includes the graph AND the formatting, including title, legend, axes, etc.
 let chartData = {
   type: 'bar',
@@ -30,6 +32,10 @@ let chartData = {
       label: 'oranges',
       data: [2, 29, 5, 5, 2, 3, 10],
       backgroundColor: "rgba(255,140,0,0.4)"
+    },{
+      label: 'banaenae',
+      data: [10, 15, 20, 30, 40, 50, 60],
+      backgroundColor: "rgba(0,0,250,0.4)"
     }]
   },
   options: {
@@ -43,11 +49,14 @@ let chartData = {
           // logarithmic scale ignores maxTicksLimit
           maxTicksLimit: 11,
           callback: function(label, index, labels) {
-            return (   label/1000 > 9 
+return (label/1000 == 10000
+                    || label/1000 == 1000 
+                    || label/1000 == 100 
+                    || label/1000 == 10 
                     || label/1000 == 1 
                     || label/1000 == 0.1 
                     || label/1000 == 0.01) 
-              ? label/1000+'k' :  "";
+              ? label/1000+'k' :  "" ;
           }
         },
         scaleLabel: {
@@ -60,7 +69,7 @@ let chartData = {
     }
   }
 };
-// var myChart = new Chart(ctx, chartData); 
+ let myChart = new Chart(ctx, chartData); 
 
 // ---------- loadContent() function ----------
 
@@ -91,30 +100,37 @@ function loadContent() {
             "Population": populations[c.Slug],
             "TotalConfirmedPer100000": 100000 * c.TotalConfirmed / populations[c.Slug],
           });
-            _.orderBy(populations, ['TotalConfirmedPer100000'],['desc'])
         }
+		    newConfirmedOver1000 = _.orderBy(newConfirmedOver1000,['TotalConfirmedPer100000'], ['desc']);
       }
 
-      chartData.data.datasets[0].backgroundColor 
+ chartData.data.datasets[0].backgroundColor 
         = "rgba(100,100,100,0.4)"; // gray
       chartData.data.datasets[1].backgroundColor 
-        = "rgba(255,0,0,0.4)"; // red
+        = "rgba(255,0,0,0.4)"; // red   
+      chartData.data.datasets[2].backgroundColor 
+        = "rgba(0,0,255,0.4)"; // blue
       chartData.data.datasets[0].label  
-        = 'new cases';
+        = 'Total cases';
       chartData.data.datasets[1].label  
-        = 'new deaths';
+        = 'Total deaths';
+            chartData.data.datasets[2].label  
+       = 'total Cases per 100000';
       chartData.data.labels  
         = newConfirmedOver1000.map( (x) => x.Slug );
       chartData.data.datasets[0].data  
         = newConfirmedOver1000.map( 
-          (x) => x.NewConfirmed );
+          (x) => x.TotalConfirmed );
       chartData.data.datasets[1].data  
         = newConfirmedOver1000.map( 
-          (x) => x.NewDeaths );
+          (x) => x.TotalDeaths );
+          chartData.data.datasets[2].data  
+       = newConfirmedOver1000.map( 
+          (x) => x.TotalConfirmedPer100000 );
       chartData.options.title.text 
         = "Covid 19 Hotspots (" + 
         dayjs().format("YYYY-MM-DD") + ")" ;
-      myChart = new Chart(ctx, chartData); 
+      myRealChart = new Chart(ctxReal, chartData);  
 
     } // end if
     
