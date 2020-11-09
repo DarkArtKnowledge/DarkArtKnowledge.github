@@ -82,7 +82,7 @@ let chartData = {
 function loadContent() {
   xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
-	   if(this.status == 404){
+	   if(newConfirmedOver1000 = undefined){
       newConfirmedOver1000 = storedPop;
     }
     else
