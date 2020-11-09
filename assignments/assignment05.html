@@ -1,13 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <meta name="viewport" content="width=device-width">
 <h2>Example Chart using Chart.js</h2>
     </head>
   <body>
 <canvas id="myChart"></canvas>
 
 <h2>Example AJAX call to Covid19api</h2>
+<canvas id="myRealChart" style="text-align:left;"></canvas>
+  
+  <div class= "covidPara" style="text-align:right;" >
+<h3 id= "side"> Covid-19</h3>
+<p id= "side"> "The COVID-19 pandemic, also <br> known as the coronavirus pandemic,<br> is an ongoing pandemic of coronavirus disease 2019 <br> (COVID-19) caused by severe acute <br> respitory syndrome coronavirus 2 <br> (SARS-CoV-2), first identified in <br> December 2019 in Wuhan, China"</p>
+  </div>
 <button type="button" onclick="loadContent()">Load Covid-19 Content</button>
+
 
 <!-- ChartJS: https://www.chartjs.org/ -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.4/Chart.min.js"></script>
@@ -20,6 +28,7 @@
 <script>
   dayjs().format();
   console.log(dayjs().format("YYYY-MM-DD"));
+
 </script>
 <script src="./assignment05.js"></script>
 </body>
