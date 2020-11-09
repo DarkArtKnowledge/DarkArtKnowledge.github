@@ -80,9 +80,10 @@ let chartData = {
 // https://www.w3schools.com/js/js_ajax_intro.asp
 
 function loadContent() {
+	  let  storedPop = JSON.parse(localStorage.getItem("newConfirmedOver1000")); //get Array
   xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
-	   if(newConfirmedOver1000 = undefined){
+	   if(newConfirmedOver1000 == undefined){
       newConfirmedOver1000 = storedPop;
     }
     else
@@ -105,8 +106,7 @@ function loadContent() {
             "TotalConfirmedPer100000": 100000 * c.TotalConfirmed / populations[c.Slug],
           });  
         }
-	 localStorage.setItem("newConfirmedOver1000", JSON.stringify(newConfirmedOver1000));      //set Array in local storage
-        storedPop = JSON.parse(localStorage.getItem("newConfirmedOver1000")); //get Array	    
+	 localStorage.setItem("newConfirmedOver1000", JSON.stringify(newConfirmedOver1000));      //set Array in local storage	    
 newConfirmedOver1000 = _.orderBy(newConfirmedOver1000,['TotalConfirmedPer100000'], ['desc']);
       }
       chartData.data.datasets[0].backgroundColor 
