@@ -150,9 +150,9 @@ let updateForm = () => {
 
 // ----- ANGULAR -----
 
-var app = angular.module('myApp', []); // Step #2: Initialize module
+var app = angular.module('payments', []); // Step #2: Initialize module
 
-app.controller('myCtrl', function($scope) { // Step #3: Create Controller
+app.controller('ctrlPayments', function($scope) { // Step #3: Create Controller
   $scope.payments = [];
   $scope.populate = function () {
       localStorage.setItem(`loadLoans`, JSON.stringify(loans));
