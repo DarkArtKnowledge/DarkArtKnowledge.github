@@ -21,8 +21,8 @@ let toMoney = (value) => {
 } // Applies toComma to applied value
 
 let loadForm = () => {
-  if(localStorage.getItem(`as06`) != null){
-     loans = JSON.parse(localStorage.getItem(`as06`));
+  if(localStorage.getItem(`loadLoans`) != null){
+     loans = JSON.parse(localStorage.getItem(`loadLoans`));
      updateForm();
   } else {
      alert(`No Save`);
@@ -153,7 +153,7 @@ var app = angular.module('myApp', []); // Step #2: Initialize module
 app.controller('myCtrl', function($scope) { // Step #3: Create Controller
   $scope.payments = [];
   $scope.populate = function () {
-      localStorage.setItem(`as06`, JSON.stringify(loans));
+      localStorage.setItem(`loadLoans`, JSON.stringify(loans));
     // Saves the Loans array in localStorage
     updateForm();
     
