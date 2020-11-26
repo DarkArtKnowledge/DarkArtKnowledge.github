@@ -143,7 +143,8 @@ let updateForm = () => {
   } // updates yearly balance for each year
   int = fullLoan - totalAmt; // Calculates total intrest
  $(`#loan_int_accrued`).text(toMoney(int)); // Puts updated full intrest accrrued in the bottom right 
-  
+       localStorage.setItem(`loadLoans`, JSON.stringify(loans));
+    // Saves the Loans array in localStorage
 } // end: function updateForm()
   
 // Angular
@@ -151,8 +152,6 @@ var app = angular.module('payments', []); // Step #2: Initialize module
 app.controller('ctrlPayments', function($scope) { // Step #3: Create Controller
   $scope.payments = [];
   $scope.populate = function () {
-      localStorage.setItem(`loadLoans`, JSON.stringify(loans));
-    // Saves the Loans array in localStorage
     updateForm();
     
     let total = fullLoan;
