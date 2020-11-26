@@ -12,22 +12,20 @@ let int = 0;
 let fullLoan = 0;
 let payments;
 
-function toComma(value) {
-  return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-} // Adds commas to values when theres 3 digits after and at least 1 before
-
 let toMoney = (value) => {
   return `\$${toComma(value.toFixed(2))}`; 
-} // Applies toComma to applied value
+} 
+// Applies toComma to applied value
 
-let loadForm = () => {
+let loadLoan = () => {
   if(localStorage.getItem(`loadLoans`) != null){
      loans = JSON.parse(localStorage.getItem(`loadLoans`));
      updateForm();
   } else {
      alert(`No Save`);
   }
-} // Loads the loans Array from localStorage if it exists and tells you if it doesn't.
+} 
+// Loads the loans Array from localStorage if it exists and tells you if it doesn't.
 
 
 // --- function: loadDoc() ---
@@ -77,13 +75,17 @@ function loadDoc() {
   });
     
   // set focus to first year: messes up codepen
-  // $("#loan_year01").focus();
+  $("#loan_year01").focus();
 
 } // end: function loadDoc()
 
+function toComma(value) {
+  return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+} 
+// Adds commas to values when theres 3 digits after and at least 1 before
+
 function updateLoansArray() {
   
-  // regex tester web site: https://www.regexpal.com/
   let yearP = /^(19|20)\d{2}$/;
   // True if year is in 1900-2100
   let amtP = /^([1-9][0-9]*)+(.[0-9]{1,2})?$/;
