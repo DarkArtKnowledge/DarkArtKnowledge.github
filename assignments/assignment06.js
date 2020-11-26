@@ -1,4 +1,4 @@
-// --- global Variables ---
+// --- global variables ---
 
 // default values
 let loans = [
@@ -11,22 +11,6 @@ let loans = [
 let int = 0;
 let fullLoan = 0;
 let payments;
-
-let toMoney = (value) => {
-  return `\$${toComma(value.toFixed(2))}`; 
-} 
-// Applies toComma to applied value
-
-let loadLoan = () => {
-  if(localStorage.getItem(`loadLoans`) != null){
-     loans = JSON.parse(localStorage.getItem(`loadLoans`));
-     updateForm();
-  } else {
-     alert(`No Save`);
-  }
-} 
-// Loads the loans Array from localStorage if it exists and tells you if it doesn't.
-
 
 // --- function: loadDoc() ---
 
@@ -79,31 +63,45 @@ function loadDoc() {
 
 } // end: function loadDoc()
 
+let loadLoan = () => {
+  if(localStorage.getItem(`loadLoans`) != null){
+     loans = JSON.parse(localStorage.getItem(`loadLoans`));
+     updateForm();
+  } else {
+     alert(`No Save`);
+  } 
+} // Loads the loans Array from localStorage if it exists and tells you if it doesn't.
+
 function toComma(value) {
   return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 } 
 // Adds commas to values when theres 3 digits after and at least 1 before
 
+let toMoney = (value) => {
+  return `\$${toComma(value.toFixed(2))}`; 
+} 
+// Applies toComma to applied value
+
 function updateLoansArray() {
   
-  let yearP = /^(19|20)\d{2}$/;
+  let yearRegex = /^(19|20)\d{2}$/;
   // True if year is in 1900-2100
-  let amtP = /^([1-9][0-9]*)+(.[0-9]{1,2})?$/;
+  let amtRegex = /^([1-9][0-9]*)+(.[0-9]{1,2})?$/;
   // Checks if amount is fully a number and returns true if so
-  let intP = /^(0|)+(.[0-9]{1,5})?$/;
+  let intRegex = /^(0|)+(.[0-9]{1,5})?$/;
 // Checks to make sure int is under 1 and it is entirely a number
   let valid = true;
-  if(!yearP.test($(`#loan_year01`).val())){ // If the tested year isnt between 1900-2099, it returns false
+  if(!yearRegex.test($(`#loan_year01`).val())){ // If the tested year isnt between 1900-2099, it returns false
     valid = false;
     $(`#loan_year01`).css("background-color", "red"); // Sets color to red if false
   }
   for (i = 1; i < 6; i++) { //Checks years 2-5 amounts 
-if(!amtP.test($(`#loan_amt0${i}`).val())) { // If there is no amount in any catagory return false
+if(!amtRegex.test($(`#loan_amt0${i}`).val())) { // If there is no amount in any catagory return false
       valid = false;
       $(`#loan_amt0${i}`).css("background-color", "red"); // Sets color to red
     } 
   }
-  if(!intP.test($(`#loan_int01`).val())) { // Makes sure int rate catagory is filled
+  if(!intRegex.test($(`#loan_int01`).val())) { // Makes sure int rate catagory is filled
     valid = false;
     $(`#loan_int01`).css("background-color", "red"); // Turns color red if incorrect
   }
@@ -127,6 +125,7 @@ if(!amtP.test($(`#loan_amt0${i}`).val())) { // If there is no amount in any cata
   } 
   
 } 
+
 // Updates loan form
 let updateForm = () => {
   fullLoan = 0; // resets fullLoan
@@ -147,11 +146,8 @@ let updateForm = () => {
   
 } // end: function updateForm()
   
-
-// ----- ANGULAR -----
-
+// Angular
 var app = angular.module('payments', []); // Step #2: Initialize module
-
 app.controller('ctrlPayments', function($scope) { // Step #3: Create Controller
   $scope.payments = [];
   $scope.populate = function () {
@@ -163,8 +159,7 @@ app.controller('ctrlPayments', function($scope) { // Step #3: Create Controller
     let intRate = loans[0].loan_int_rate;
     let r = intRate / 12;
     let n = 11;
-    //loan payment formula
-    //https://www.thebalance.com/loan-payment-calculations-315564
+    //yearly loan payment formula
     let pay = 12 * (total / ((((1+r)**(n*12))-1)/(r *(1+r)**(n*12)))); // calculate how much payments are for year's 0-9 
     for (let i = 0; i < 10; i++) {
       total -= pay // takes pay from total at the end of every year
@@ -173,8 +168,8 @@ app.controller('ctrlPayments', function($scope) { // Step #3: Create Controller
         "year":loans[4].loan_year + i + 1, // Puts the next 9 years into the payments form
         "payment": toMoney(pay), // Puts payments for the next 9 years into payments form
         "amt": toMoney(int), // Puts the intrest amount into the int amount column
-        "ye": toMoney(total += int)
-      } // adds yearly balance for each year
+        "ye": toMoney(total += int) // adds yearly balance for each year
+      }
     }
     $scope.payments[10] = {
       "year":loans[4].loan_year + 11, // sets last year to 11 years from the 5th Loan array year
