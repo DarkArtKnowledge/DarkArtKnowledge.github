@@ -119,7 +119,8 @@ if(!amtRegex.test($(`#loan_amt0${i}`).val())) { // If there is no amount in any 
     for(i=0; i<5; i++){
       loans[i].loan_int_rate = rate;
     } // Inputs rate in all other boxes in the column
-    
+           localStorage.setItem(`loadLoans`, JSON.stringify(loans));
+    // Saves the Loans array in localStorage
     updateForm();
     
   } 
@@ -143,8 +144,6 @@ let updateForm = () => {
   } // updates yearly balance for each year
   int = fullLoan - totalAmt; // Calculates total intrest
  $(`#loan_int_accrued`).text(toMoney(int)); // Puts updated full intrest accrrued in the bottom right 
-       localStorage.setItem(`loadLoans`, JSON.stringify(loans));
-    // Saves the Loans array in localStorage
 } // end: function updateForm()
   
 // Angular
