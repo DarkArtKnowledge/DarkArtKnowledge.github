@@ -83,10 +83,6 @@ function loadContent() {
 	  let  storedPop = JSON.parse(localStorage.getItem("newConfirmedOver1000")); //get Array
   xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
-	   if(newConfirmedOver1000 == undefined){
-      newConfirmedOver1000 = storedPop;
-    }
-    else
     if (this.readyState == 4 
         && this.status == 200) {
       
